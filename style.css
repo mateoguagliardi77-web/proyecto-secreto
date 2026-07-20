@@ -175,8 +175,8 @@ body{
 
   #contadorContainer {
     width: 90%;
-    top: 30%;
-    left: 30%;
+    top: 0%;
+    left: 15%;
     transform: translate(-50%, -50%);
   }
 
