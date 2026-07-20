@@ -182,8 +182,8 @@ body{
   #contadorContainer {
     width: 85%;
     top: 74%;
-    left: 50%;
-    transform: translate(-40%, -50%); /* 🔥 corregido */
+    left: 60%;
+    transform: translate(-50%, -50%); /* 🔥 corregido */
   }
 
   #tituloContador {
