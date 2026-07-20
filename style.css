@@ -35,22 +35,25 @@ body{
     filter:blur(8px) brightness(0.6);
 }
 
-/* BOTÓN INICIO */
+/* BOTÓN INICIO (CORREGIDO) */
 #btnInicio{
     position:absolute;
-    z-index:10;
+    z-index:9999; /* 🔥 evita que desaparezca */
     padding:15px 30px;
     background:transparent;
     color:#E3C58A;
     border:1px solid #E3C58A;
     letter-spacing:3px;
     cursor:pointer;
+
     opacity:0;
+    visibility:hidden;
     transition:opacity 2s ease;
 }
 
 #btnInicio.mostrar{
     opacity:1;
+    visibility:visible;
 }
 
 /* NIEBLA */
@@ -109,6 +112,7 @@ body{
 #tituloContador{
     color:#E3C58A;
     font-size:22px;
+    margin-bottom:5px; /* 🔥 menos espacio con el contador */
 }
 
 #contador{
@@ -123,7 +127,7 @@ body{
     justify-content:center;
     gap:35px;
     color:#C8A874;
-    margin-top: -20px;
+    margin-top:-10px; /* 🔥 ajustado */
 }
 
 /* BOTÓN FINAL */
@@ -150,6 +154,7 @@ body{
     transition:opacity 1s ease;
 }
 
+/* FUNDIDO */
 #fundido{
     position:absolute;
     inset:0;
@@ -159,6 +164,7 @@ body{
     z-index:6;
 }
 
+/* 📱 CELULAR VERTICAL */
 @media (max-width: 768px) and (orientation: portrait) {
 
   #btnInicio {
@@ -177,7 +183,7 @@ body{
     width: 85%;
     top: 74%;
     left: 50%;
-    transform: translate(-30%, -50%);
+    transform: translate(-50%, -50%); /* 🔥 corregido */
   }
 
   #tituloContador {
@@ -203,6 +209,7 @@ body{
 
 }
 
+/* 📱 CELULAR HORIZONTAL */
 @media (max-width: 768px) and (orientation: landscape) {
 
   #btnInicio {
