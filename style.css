@@ -224,11 +224,11 @@ body{
   }
 
   #tituloContador {
-    font-size: 42px;
+    font-size: 12px;
   }
 
   #contador {
-    font-size: 66px;
+    font-size: 26px;
     gap: 6px;
   }
 
