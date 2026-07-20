@@ -91,7 +91,7 @@ body{
 /* CONTADOR */
 #contadorContainer{
     position:absolute;
-    top:91%;
+    top:61%;
     left:55%;
     transform:translate(-50%,-50%);
     width:420px;
