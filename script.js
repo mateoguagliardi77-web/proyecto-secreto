@@ -1,145 +1,110 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+document.addEventListener("DOMContentLoaded", () => {
+
+const fechaObjetivo = new Date(2026, 7, 19, 20, 0, 0).getTime();
+
+const dias = document.getElementById("dias");
+const horas = document.getElementById("horas");
+const minutos = document.getElementById("minutos");
+const segundos = document.getElementById("segundos");
+
+const contador = document.getElementById("contador");
+const etiquetas = document.getElementById("etiquetas");
+const titulo = document.getElementById("tituloContador");
+
+const boton = document.getElementById("btnPistas");
+const video = document.getElementById("videoFinal");
+const fundido = document.getElementById("fundido");
+const musica = document.getElementById("musica");
+
+const fondo = document.getElementById("fondo");
+const niebla = document.getElementById("niebla");
+const invitacion = document.getElementById("invitacion");
+const contenedor = document.getElementById("contadorContainer");
+const btnInicio = document.getElementById("btnInicio");
+
+/* CONTADOR */
+function actualizarContador(){
+
+    const ahora = new Date().getTime();
+    const diferencia = fechaObjetivo - ahora;
+
+    if(diferencia <= 0){
+        contador.style.display = "none";
+        etiquetas.style.display = "none";
+        titulo.style.display = "none";
+        boton.style.display="inline-block";
+        clearInterval(intervalo);
+        return;
+    }
+
+    const d = Math.floor(diferencia/(1000*60*60*24));
+    const h = Math.floor((diferencia%(1000*60*60*24))/(1000*60*60));
+    const m = Math.floor((diferencia%(1000*60*60))/(1000*60));
+    const s = Math.floor((diferencia%(1000*60))/1000);
+
+    dias.textContent = String(d).padStart(2,"0");
+    horas.textContent = String(h).padStart(2,"0");
+    minutos.textContent = String(m).padStart(2,"0");
+    segundos.textContent = String(s).padStart(2,"0");
 }
 
-body {
-  background: black;
-  font-family: 'Cinzel', serif;
-  overflow: hidden;
-}
+actualizarContador();
+const intervalo = setInterval(actualizarContador,1000);
 
-#escena {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-}
+/* 🎬 BOTÓN INICIAL APARECE */
+setTimeout(()=>{
+    btnInicio.classList.add("mostrar");
+},3000);
 
-/* 🔥 BOTÓN SIEMPRE VISIBLE */
-#btnInicio {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
+/* 🚀 CLICK INICIO */
+btnInicio.addEventListener("click",()=>{
 
-  padding: 15px 25px;
-  font-size: 18px;
-  background: black;
-  color: white;
-  border: 1px solid white;
-  cursor: pointer;
-}
+    // 🔊 AUDIO SOLO AQUÍ (SOLUCIÓN ANDROID)
+    musica.volume = 0.35;
+    musica.play().catch(err => console.log("Audio bloqueado:", err));
 
-/* fondo */
-#fondo {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: black;
-  z-index: 1;
-}
+    btnInicio.style.display="none";
 
-/* invitación */
-#invitacion {
-  position: absolute;
-  width: 80%;
-  max-width: 400px;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-}
+    setTimeout(()=>{
+        fondo.classList.add("blurActivo");
+        niebla.classList.add("activa");
+    },5000);
 
-/* humo video */
-#humo {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 3;
-  pointer-events: none;
-}
+    setTimeout(()=>{
+        invitacion.classList.add("mostrar");
+        contenedor.classList.add("mostrar");
+    },10000);
 
-/* contador */
-#contadorContainer {
-  position: absolute;
-  bottom: 10%;
-  width: 100%;
-  text-align: center;
-  z-index: 4;
-  color: white;
-}
+});
 
-#tituloContador {
-  font-size: 16px;
-  margin-bottom: 5px; /* 🔥 MENOS ESPACIO */
-}
+/* 🎥 BOTÓN FINAL */
+boton.addEventListener("click",()=>{
 
-#contador {
-  font-size: 28px;
-  letter-spacing: 3px;
-}
+    fundido.style.opacity="1";
 
-#etiquetas {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  font-size: 10px;
-  margin-top: 5px; /* 🔥 MENOS ESPACIO */
-}
+    setTimeout(()=>{
 
-/* botón pistas */
-#btnPistas {
-  margin-top: 15px;
-  padding: 10px 20px;
-  background: transparent;
-  border: 1px solid white;
-  color: white;
-  cursor: pointer;
-}
+        invitacion.style.display="none";
+        contenedor.style.display="none";
 
-/* video final */
-#videoFinal {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 5;
-  display: none;
-}
+        video.style.visibility="visible";
+        video.style.opacity="1";
 
-/* fundido */
-#fundido {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: black;
-  z-index: 6;
-  opacity: 0;
-  pointer-events: none;
-}
+        fundido.style.opacity="0";
 
-/* 📱 RESPONSIVE (CELULAR) */
-@media (max-width: 768px) {
+        musica.pause();
+        musica.currentTime = 0;
 
-  #invitacion {
-    width: 90%;
-    top: 15%;
-  }
+        video.play();
 
-  #contador {
-    font-size: 22px;
-  }
+    },1000);
+});
 
-  #tituloContador {
-    font-size: 14px;
-  }
+/* ❌ ELIMINADO: autoplay que rompe en celular */
+/*
+window.addEventListener("load",()=>{
+    musica.play();
+});
+*/
 
-  #etiquetas {
-    gap: 15px;
-    font-size: 9px;
-  }
-
-}
+});
