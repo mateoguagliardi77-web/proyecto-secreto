@@ -175,8 +175,8 @@ body{
 
   #contadorContainer {
     width: 90%;
-    top: 35%;
-    left: 10%;
+    top: 37%;
+    left: 0%;
     transform: translate(-50%, -50%);
   }
 
@@ -185,7 +185,7 @@ body{
   }
 
   #contador {
-    font-size: 32px;
+    font-size: 42px;
     gap: 5px;
   }
 
