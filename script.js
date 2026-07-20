@@ -3,11 +3,18 @@ document.addEventListener("DOMContentLoaded", () => {
 const fechaObjetivo = new Date(2026, 7, 19, 20, 0, 0).getTime();
 
 
-const btn = document.getElementById("btnInicio");
+const btnInicio = document.getElementById("btnInicio");
 const musica = document.getElementById("musica");
 
-btn.addEventListener("click", () => {
-  musica.play();
+btnInicio.addEventListener("click", () => {
+
+  // reproducir audio (esto habilita sonido en celular)
+  musica.volume = 0.3;
+
+  musica.play().catch(error => {
+    console.log("Error al reproducir:", error);
+  });
+
 });
 
 
