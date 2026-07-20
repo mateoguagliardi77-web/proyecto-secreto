@@ -182,7 +182,6 @@ body{
 
   #tituloContador {
     font-size: 14px;
-    margin-top: 1px;
   }
 
   #contador {
@@ -230,7 +229,7 @@ body{
 
   #contador {
     font-size: 66px;
-    gap: 8px;
+    gap: 6px;
   }
 
   #etiquetas {
