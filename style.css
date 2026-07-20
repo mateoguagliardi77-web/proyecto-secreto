@@ -185,14 +185,14 @@ body{
   }
 
   #contador {
-    font-size: 42px;
+    font-size: 40px;
     gap: 5px;
   }
 
   #etiquetas {
-    gap: 10px;
+    gap: 15px;
     font-size: 12px;
-    margin-top: 0px;
+    margin-top: -10px;
   }
 
   #btnPistas {
